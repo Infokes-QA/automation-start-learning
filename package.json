@@ -1,0 +1,28 @@
+{
+  "name": "automation-research-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:report": "playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Infokes-QA/automation-research-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Infokes-QA/automation-research-ts/issues"
+  },
+  "homepage": "https://github.com/Infokes-QA/automation-research-ts#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.3",
+    "dotenv": "^16.4.5",
+    "playwright-bdd": "^8.0.0"
+  }
+}
