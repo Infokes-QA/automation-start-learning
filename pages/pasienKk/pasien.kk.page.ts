@@ -279,6 +279,28 @@ export class PasienKkPage extends BasePage {
         }
     }
 
+    /**
+     * Klik tombol "Hapus Semua Pemeriksaan" atau "Hapus Permanen" jika muncul.
+     * Return true jika berhasil klik, false jika tidak ada tombol yang visible.
+     */
+    async clickHapusPermanenJikaMuncul(): Promise<boolean> {
+        // Coba "Hapus Semua Pemeriksaan" dulu
+        if (await this.tryWaitVisible(this.element.buttonHapusSemuaPemeriksaan.first(), 3_000)) {
+            await this.click(this.element.buttonHapusSemuaPemeriksaan, { timeoutMs: 5_000, retry: { retries: 0 } }).catch(() => {});
+            return true;
+        }
+
+        // Fallback ke "Hapus Permanen"
+        if (await this.tryWaitVisible(this.element.buttonHapusPermanen.first(), 2_000)) {
+            await this.click(this.element.buttonHapusPermanen, { timeoutMs: 5_000, retry: { retries: 0 } }).catch(() => {});
+            return true;
+        }
+
+        // Tidak ada tombol yang muncul
+        console.warn('[warn] Tombol Hapus Semua Pemeriksaan / Hapus Permanen tidak ditemukan, skip step ini');
+        return false;
+    }
+
     private async ensureDeletionAuthorizationDialogOpen(): Promise<void> {
         await this.ensureDialogOpenByClickingTrigger({
             dialogAnchor: this.element.passwordOtorisasiInput,

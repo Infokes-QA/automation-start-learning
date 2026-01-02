@@ -7,6 +7,7 @@ export const pasienData: {
 	lastSelectedPatientName: string | null;
 	BPJSNumberJalan: string;
 	BPJSNumberInap: string;
+	pendaftaranId: string;
 } = {
 	createdPasien: null,
 	bpjsNumber: null,
@@ -14,4 +15,5 @@ export const pasienData: {
 	lastSelectedPatientName: null,
 	BPJSNumberJalan: "0002086745354",
 	BPJSNumberInap: "0002033378673",
+	pendaftaranId: "",
 };

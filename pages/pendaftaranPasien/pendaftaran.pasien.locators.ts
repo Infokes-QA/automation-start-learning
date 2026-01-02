@@ -7,4 +7,5 @@ export const PendaftaranPasienLocators = (page: Page) => ({
     searchResultPendaftaranPasien: page.locator('table tbody tr td:nth-child(5)'),
     searchResultRuanganDaftar: page.locator('table tbody tr td:nth-child(7)'),
     searchResultAsuransi: page.locator('table tbody tr td:nth-child(9)'),
+    searchPendaftaranId: page.locator('table tbody tr td:nth-child(2)'),
 });

@@ -1,4 +1,4 @@
-import { createBdd } from 'playwright-bdd';
+import { createBdd, DataTable } from 'playwright-bdd';
 import { PasienKkPage } from '../pages/pasienKk/pasien.kk.page';
 import { createPasienViaApi} from '../api/facades/pasien.facade';
 import { pasienData } from '../data/pendaftaran.data';
@@ -9,6 +9,7 @@ import {
     resolvePendaftaranExpectedName,
     resolvePendaftaranSearchValue,
 } from '../utils/pendaftaran/pendaftaran.search.resolve';
+import { destroyPendaftaranViaApi } from '../api/facades/pendaftaran.facade';
 
 const { Given, When, Then, Before } = createBdd();
 let pasienKkPage: PasienKkPage;
@@ -164,8 +165,8 @@ When('user inputs password otorisasi', async ({page}) => {
 })
 
 When('user clicks the Hapus Semua Pemeriksaan button', async ({page}) => {
-  await pasienKkPage.clickHapusPermanen();
-  await pasienKkPage.clickKonfirmasiHapusSemuaPemeriksaan();
+  // Klik "Hapus Semua Pemeriksaan" atau "Hapus Permanen" jika muncul (conditional)
+  await pasienKkPage.clickHapusPermanenJikaMuncul();
 })
 
 When('user clicks the Hapus Permanen button', async ({page}) => {
@@ -204,5 +205,32 @@ When('user search pasien asuransi BPJS with {string}', async ({page}, BPJSNumber
 
     await pasienKkPage.isiNIKPasien(bpjsToSearch);
     await pasienKkPage.cariDanTungguHasil(bpjsToSearch, bpjsToSearch);
+})
+
+Then('system delete the created pasien registration data', async function ({page}, dataTable:DataTable) {
+    const data = dataTable.rowsHash();
+    const pendaftaranId = data['pendaftaranId'] || pasienData.pendaftaranId;
+    const passwordOtorisasi = data['passwordOtorisasi'] || process.env.EC_PASSWORD || '';
+    const keterangan = data['keterangan'] || 'Hapus data pendaftaran otomatis oleh sistem test';
+    
+    if (!pendaftaranId) {
+        console.warn('[warn] No pendaftaranId available - skipping deletion (registration may have failed)');
+        return;
+    }
+    
+    console.log(`[info] Deleting pendaftaran with ID: ${pendaftaranId}`);
+    await destroyPendaftaranViaApi(page, {
+        pendaftaranId,
+        passwordOtorisasi,
+        keteranganDelete: keterangan,
+    });
+})
+
+Then('system store pendaftaran ID', async ({page}) => {
+    const pendaftaranIds = await pendaftaranPasienPage.getPendaftaranId();
+    if (pendaftaranIds.length === 0) {
+        throw new Error('Tidak ada pendaftaran ID yang ditemukan di hasil pencarian.');
+    }
+    pasienData.pendaftaranId = pendaftaranIds;
 })
 

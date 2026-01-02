@@ -81,4 +81,8 @@ export class PendaftaranPasienPage extends BasePage {
             throw new Error(`Asuransi ${asuransi} tidak ditemukan dalam hasil pencarian.`);
         }
     }
+    async getPendaftaranId(): Promise<string> {
+        const results = await this.element.searchPendaftaranId.allInnerTexts();
+        return results.map((r) => r.trim()).filter(Boolean)[0] ?? "";
+    }
 }
