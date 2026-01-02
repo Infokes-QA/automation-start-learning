@@ -1,6 +1,6 @@
 import { createBdd } from 'playwright-bdd';
-import { LoginPage } from '../pages/login.page';
-import { SelectPuskesmasPage } from '../pages/select.puskesmas.page';
+import { LoginPage } from '../pages/login/login.page';
+import { SelectPuskesmasPage } from '../pages/selectFaskes/select.puskesmas.page';
 import { users } from '../data/users';
 
 const { Given, When, Then } = createBdd();
