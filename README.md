@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Playwright BDD Template
 
 Playwright + `playwright-bdd` automation project with feature-based test scenarios.
@@ -29,3 +30,6 @@ Playwright + `playwright-bdd` automation project with feature-based test scenari
 - Run Chromium headed: `npm run test:headed`
 - Run headed by tag (`@pendaftaranPasien`): `npm run test:headed:tag`
 
+=======
+"# automation-start-learning" 
+>>>>>>> 008a445 (Initial commit: Menambahkan README)
