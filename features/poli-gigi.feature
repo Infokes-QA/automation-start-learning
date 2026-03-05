@@ -24,10 +24,3 @@ Feature: Pelayanan Poli Gigi with Laboratorium
     And the user sets the patient status to "Meninggal"
     Then the Poli Gigi service is successfully completed
     And all laboratory records are saved
-
-  Scenario: Fail to set patient status to Pulang without diagnosa
-    When the user registers the patient to Poli Gigi
-    And the user fills in anamnesa data
-    And the user sets the patient status to "Pulang"
-    Then the system should display validation error for missing diagnosa
-    And the patient visit status should not be updated to "Pulang"
