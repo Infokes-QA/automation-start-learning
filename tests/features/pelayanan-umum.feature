@@ -17,7 +17,7 @@ Feature: Pelayanan Umum
     And user enters all mandatory field on Buat Baru Diagnosa form
     And user clicks Simpan Button 
     Then The system displays a message: "Diagnosa berhasil disimpan"
-    And user clicks Resep Tab
+    When user clicks Resep Tab
     And the user fill Resep section with <Racikan>, <NamaObat>, <Jumlah>, <Signa>, and <AturanPakai>
     And the user clicks Tambah button
     And the user clicks Simpan button

@@ -13,11 +13,11 @@ Feature: Pelayanan Gigi
     And user enters all mandatory field on Buat Baru Anamnesa form
     And user clicks Simpan Anamnesa Button
     Then The system displays a message: "Anamnesa berhasil disimpan"
-    And user clicks Diagnosa Tab
+    When user clicks Diagnosa Tab
     And user enters all mandatory field on Buat Baru Diagnosa form
     And user clicks Simpan Button
     Then The system displays a message: "Diagnosa berhasil disimpan"
-    And user clicks Laboratorium Tab
+    When user clicks Laboratorium Tab
     And user select <jenislab>
     And user click simpan
     Then The system displays a message: "Data berhasil disimpan"
