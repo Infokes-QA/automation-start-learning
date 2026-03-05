@@ -18,7 +18,7 @@ Feature: Pelayanan Medis
         And the user saves Pelayanan Poli Umum
         Then the system stores the Pelayanan Poli Umum data
 
-    Example: 
+    Examples:
         |nama_obat|
         |ACARBOSE 50 TAB DEXA|
         |AMLODIPINE 10MG TABLET|
@@ -34,7 +34,7 @@ Feature: Pelayanan Medis
         And the user saves Pelayanan Poli Gigi
         Then the system stores the Pelayanan Poli Gigi data
 
-    Example: 
+    Examples:
         |jenis_pemeriksaan|
         |eritrosit|
         |leukosit|
