@@ -11,7 +11,7 @@ Feature: Pelayanan Medis Pasien Poli Gigi
     When Dokter mengisi Pengkajian Awal wajib
     And Dokter mengisi Pemeriksaan Fisik wajib
     And Dokter mencatat tindakan "<tindakan>"
-    And Dokter menerbitkan permintaan lab "<jenis_lab>"
+    And Dokter menerbitkan permintaan lab  "<jenis_lab>"
     And Dokter menekan tombol simpan pelayanan
     Then Sistem mengarsipkan data pelayanan poli gigi
     And Sistem mengirimkan permintaan "<jenis_lab>" ke pelayanan Lab
