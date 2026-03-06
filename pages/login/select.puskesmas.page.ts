@@ -17,7 +17,7 @@ export class SelectPuskesmasPage extends BasePage {
         this.poskesdesButton = content.getByRole("button", { name: /poskesdes/i }).first();
 
         // POSKESDES is a good unique signal for the select-faskes page.
-        this.selectFaskesIndicator = this.poskesdesButton;
+        this.selectFaskesIndicator = this.pustuButton;
     }   
 
     async pilihPuskesmas() {

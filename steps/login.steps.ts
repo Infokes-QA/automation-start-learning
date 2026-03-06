@@ -1,7 +1,7 @@
 import { createBdd } from 'playwright-bdd';
 import { LoginPage } from '../pages/login/login.page';
-import { SelectPuskesmasPage } from '../pages/selectFaskes/select.puskesmas.page';
-import { users } from '../data/users';
+import { SelectPuskesmasPage } from '../pages/login/select.puskesmas.page';
+
 
 const { Given, When, Then } = createBdd();
 
@@ -10,11 +10,13 @@ Given('user navigates to login page', async ({ page }) => {
     await loginPage.kunjungiHalaman();
 });
 
-When('user enters {string} username and password', async ({ page }, key: string) => {
+When('user enters valid username and password', async ({ page }) => {
     const loginPage = new LoginPage(page);
-    const data = (users as any)[key];
-    await loginPage.isikanIdPengguna(data.username);
-    await loginPage.isikanKataSandi(data.password);
+    const username = process.env.EC_USERNAME!;
+    const password = process.env.EC_PASSWORD!;
+
+    await loginPage.isikanIdPengguna(username);
+    await loginPage.isikanKataSandi(password);
 });
 
 When('user clicks login button', async ({ page }) => {
@@ -26,3 +28,8 @@ Then('user will be directed to the select puskesmas page', async ({ page }) => {
     const selectPuskesmasPage = new SelectPuskesmasPage(page);
     await selectPuskesmasPage.lihatJudulPuskesmas();
 });
+
+When('user selects puskesmas', async ({ page }) => {
+    const selectPuskesmasPage = new SelectPuskesmasPage(page);
+    await selectPuskesmasPage.pilihPuskesmas();
+})
