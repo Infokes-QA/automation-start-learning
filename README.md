@@ -1,20 +1,31 @@
-# Playwright BDD Login Template
+# Playwright BDD Template
 
-Minimal template project for login automation with Playwright + `playwright-bdd`.
+Playwright + `playwright-bdd` automation project with feature-based test scenarios.
 
 ## Setup
 
 1. Install dependencies:
-   `npm install`
-2. Configure `.env`:
-   `BASE_URL=https://your-app-url`
-   `LOGIN_USERNAME=your-username`
-   `LOGIN_PASSWORD=your-password`
+   `npm i`
+2. Install Playwright browser binaries (first time only):
+   `npx playwright install`
+3. Create `.env` and set values:
+   - `BASE_URL=https://your-app-url`
+   - Use one credential pair:
+     - `EC_USERNAME=your-username`
+     - `EC_PASSWORD=your-password`
 
-`EC_USERNAME` and `EC_PASSWORD` are also supported for backward compatibility.
+
+## Project Structure
+
+- `features/*.feature`: Gherkin scenarios
+- `steps/*.ts`: step definitions
+- `pages/**`: page objects
+- `playwright.config.ts`: Playwright + BDD config
 
 ## Run
 
-- Run tests: `npm test`
-- Run in headed mode: `npm run test:headed`
-- List generated tests: `npm run test:list`
+- Generate BDD specs: `npm run bdd:gen`
+- Run all tests: `npm test`
+- Run Chromium headed: `npm run test:headed`
+- Run headed by tag (`@pendaftaranPasien`): `npm run test:headed:tag`
+
