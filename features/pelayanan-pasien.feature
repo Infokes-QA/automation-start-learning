@@ -21,6 +21,9 @@ Feature: Pelayanan Medis
     And the user fills in anamnesa data
     And the user fills in diagnosa data
     And the user add 2 Drug recepies for the patient
+      | drug name     | qty|signa  |
+      | Paracetamol   | 4  | 2x1   |
+      | Ambroxol      | 6  | 3x1   |
     And the user sets the patient status pulang to "Berobat Jalan"
     Then the Poli Umum service is successfully completed
     And all resep are saved
@@ -55,6 +58,11 @@ Feature: Pelayanan Medis
     And the user fills in odotogram data
     And the user fills in diagnosa data
     And the user creates 3 laboratory inspection
+      | inspection     | 
+      | Gula Darah     | 
+      | HEMATOLOGI     | 
+      | Golongan Darah | 
+
     And the laboratory results are recorded
     And the user sets the patient status to "Berobat Jalan"
     Then the Poli Gigi service is successfully completed
