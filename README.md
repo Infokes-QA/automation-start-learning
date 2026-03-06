@@ -1,5 +1,5 @@
 # automation-start-learning
-Catatan: kode belum bisa diexecute, masih berupa draft
+Catatan: kode belum bisa diexecute, masih berupa draft.  
 Folder structure untuk task ini
 ```
 src/test
