@@ -1,0 +1,6 @@
+class labExaminationPage{
+    // locator
+
+    // methods
+    
+}

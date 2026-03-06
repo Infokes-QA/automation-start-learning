@@ -1,0 +1,6 @@
+class homePage{
+    // locator
+
+    // methods
+    
+}

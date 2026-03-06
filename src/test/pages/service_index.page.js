@@ -1,0 +1,6 @@
+class serviceIndexPage{
+    // locator
+
+    // methods
+    
+}

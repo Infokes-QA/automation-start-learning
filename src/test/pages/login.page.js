@@ -1,0 +1,6 @@
+class loginPage{
+    // locator
+
+    // methods
+    
+}

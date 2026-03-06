@@ -1,0 +1,6 @@
+class generalClinicPage{
+    // locator
+
+    // methods
+    
+}

@@ -1,0 +1,6 @@
+class dentalClinicPage{
+    // locator
+
+    // methods
+    
+}
