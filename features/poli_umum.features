@@ -1,0 +1,19 @@
+Feature: Medical service at the general clinic with prescription  
+
+As a patient I want to receive medical service at the general clinic
+So that I can get a diagnosis and a prescription
+
+Background
+Given patient is registered in general clinic
+When doctor starts the medical service
+And doctor input the anamnesis
+And doctor input the diagnosis
+And doctor input the prescription
+And medical service is finished
+And doctor click Cetak button on prescription page
+Then patient receives a prescription
+
+Parameter:
+- Patient type
+1. Pasien Umum
+2. Pasien BPJS

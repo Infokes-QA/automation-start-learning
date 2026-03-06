@@ -1,0 +1,19 @@
+Feature: Medical service at the dental clinic with lab test  
+
+As a patient I want to receive medical service at the dental clinic
+So that I can get lab test
+
+Background
+Given patient is registered in dental clinic
+When doctor starts the medical service
+And doctor input the anamnesis
+And doctor input the diagnosis
+And doctor select the list of type lab
+And medical service is finished
+And doctor click Cetak Antrean Lab button on lab page
+Then patient receives a lab queue number
+
+Parameter:
+- Patient type
+1. Pasien Umum
+2. Pasien BPJS
