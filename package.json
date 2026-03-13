@@ -7,7 +7,7 @@
     "bdd:gen": "bddgen test",
     "test": "npm run bdd:gen && playwright test",
     "test:headed": "npm run test -- --project=chromium --headed",
-    "test:headed:tag": "npm run test -- --grep @pendaftaranPasien --project=chromium --headed",
+    "test:headed:tag": "npm run test -- --grep @create-pasien-asuransi-umum --project=chromium --headed",
     "test:list": "npm run bdd:gen && playwright test --project=chromium --list",
     "test:report": "playwright show-report"
   },

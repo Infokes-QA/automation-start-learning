@@ -18,3 +18,11 @@ Feature: Pelayanan
         Examples:
             | nik              | nama              |
             | 1295012906892673 | TEST ENCRYPT FAIL |
+            
+    @create-pasien-asuransi-umum
+    Scenario: User successfuylly create pasien asuransi umum
+        Given user in pendaftaran pasien & kk page
+        When user navigates to create pasien page
+        Then user will be directed to create pasien page
+        When user fill create pasien form with valid data
+

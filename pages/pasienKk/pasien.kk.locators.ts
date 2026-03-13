@@ -16,5 +16,9 @@ export const pasienKkLocators = (page: Page) => ({
     findSpecificTableRowUsingString: async (key: string) =>
         await page.getByRole("table").getByRole("row").filter({ hasText: key }),
 
-    
+    //button create pasien
+    buttonCreatePasien: page.locator("#button_create"),
+
+    //form create pasien
+    nikField: page.getByPlaceholder("Nomor Induk Kependudukan"),
 });
