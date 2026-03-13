@@ -8,7 +8,7 @@ Feature: Pelayanan
         When user selects puskesmas
         Then user will be directed to the home page
 
-    @pendaftaranPasien
+    @search-pasien-asuransi-umum
     Scenario: User successfully search patient asuransi umum with NIK
         Given user in pendaftaran pasien & kk page
         When user search patient asuransi umum with "<nik>"
