@@ -1,4 +1,4 @@
-import type { Locator, Page, FrameLocator } from '@playwright/test';
+import { expect, type Locator, type Page, type FrameLocator } from '@playwright/test';
 
 export type RetryOptions = {
 	retries?: number;
@@ -200,13 +200,59 @@ export class BasePage {
 	 * wait untuk populated data
 	 */
 	async waitForPopulated(targetToBeReady?: Locator, timeoutMs = 10_000, settleDelayMs = 500): Promise<void> {
-		await this.page.waitForLoadState('networkidle', { timeout: timeoutMs }).catch(() => {});
+		await this.page.waitForLoadState('networkidle', { timeout: timeoutMs }).catch(() => { });
 		if (settleDelayMs > 0) {
 			await this.page.waitForTimeout(settleDelayMs);
 		}
 		if (targetToBeReady) {
 			await this.waitVisible(targetToBeReady, timeoutMs);
 		}
+	}
+
+	// Assertion helpers
+
+	async expectVisible(target: Locator, timeoutMs?: number): Promise<void> {
+		await expect(target).toBeVisible({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectHidden(target: Locator, timeoutMs?: number): Promise<void> {
+		await expect(target).toBeHidden({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectEnabled(target: Locator, timeoutMs?: number): Promise<void> {
+		await expect(target).toBeEnabled({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectDisabled(target: Locator, timeoutMs?: number): Promise<void> {
+		await expect(target).toBeDisabled({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectChecked(target: Locator, timeoutMs?: number): Promise<void> {
+		await expect(target).toBeChecked({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectText(target: Locator, expected: string | RegExp, timeoutMs?: number): Promise<void> {
+		await expect(target).toHaveText(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectContainsText(target: Locator, expected: string | RegExp, timeoutMs?: number): Promise<void> {
+		await expect(target).toContainText(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectValue(target: Locator, expected: string | RegExp, timeoutMs?: number): Promise<void> {
+		await expect(target).toHaveValue(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectCount(target: Locator, expected: number, timeoutMs?: number): Promise<void> {
+		await expect(target).toHaveCount(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectUrl(expected: string | RegExp, timeoutMs?: number): Promise<void> {
+		await expect(this.page).toHaveURL(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+	}
+
+	async expectTitle(expected: string | RegExp, timeoutMs?: number): Promise<void> {
+		await expect(this.page).toHaveTitle(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
 	}
 
 	// ---- Action helpers (with retry)
