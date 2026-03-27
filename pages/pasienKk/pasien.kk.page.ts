@@ -38,5 +38,20 @@ export class PasienKkPage extends BasePage {
 
     async fillFormPasien(data: PasienData) : Promise<void> {
         await this.fill(this.element.nikField, data.nik);
+        await this.fill(this.element.namaField, data.nama);
+        if (data.jenisKelamin === 'Laki-laki') {
+            await this.click(this.element.opsiJenisKelaminLakiLaki);
+        } else if (data.jenisKelamin === 'Perempuan') {
+            await this.click(this.element.opsiJenisKelaminPerempuan);
+        }
     }
+
+    async klikTombolSimpan() {
+        await this.click(this.element.saveButton);
+    }
+
+    async verifikasiPopUpSuccessMessage() {
+        await this.expectVisible(this.element.popUpSuccessMessage);
+    }
+
 }

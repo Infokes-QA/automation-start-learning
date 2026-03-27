@@ -24,5 +24,12 @@ Feature: Pelayanan
         Given user in pendaftaran pasien & kk page
         When user navigates to create pasien page
         Then user will be directed to create pasien page
-        When user fill create pasien form with valid data
+        When user fill create pasien form with gender "<gender>"
+        Then user can see pop up message "Data pasien berhasil disimpan"
 
+        Examples:
+            | gender    |
+            | Laki-laki |
+            | Perempuan |
+
+    

@@ -21,4 +21,13 @@ export const pasienKkLocators = (page: Page) => ({
 
     //form create pasien
     nikField: page.getByPlaceholder("Nomor Induk Kependudukan"),
+    namaField: page.getByPlaceholder("NAMA LENGKAP"),
+    jenisKelaminField: page.getByLabel("Jenis Kelamin"),
+    opsiJenisKelaminPerempuan: page.getByLabel('Perempuan'),
+    opsiJenisKelaminLakiLaki: page.getByLabel('Laki-laki'),
+    saveButton: page.locator('#button_save'),
+    popUpSuccessMessage: page.getByText('× Berhasil: Data berhasil')
+    
 });
+
+//

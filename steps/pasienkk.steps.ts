@@ -35,9 +35,18 @@ Then('user will be directed to create pasien page', async ({ page }) => {
     await pasienKkPage.expectUrl("/pasien/create");
 });
 
-When('user fill create pasien form with valid data', async ({ page }) => {
+When('user fill create pasien form with gender {string}', async ({ page }, gender) => {
     const pasienKkPage = new PasienKkPage(page);
-    await pasienKkPage.fillFormPasien(PASIEN_DEFAULT);
+    const pasienData = PASIEN_DEFAULT.find(p => p.jenisKelamin === gender);
+    if (!pasienData) {
+        throw new Error(`Data untuk gender "${gender}" tidak ditemukan di file pasien.data.ts.`);
+    }
+    await pasienKkPage.fillFormPasien(pasienData);
+    await pasienKkPage.klikTombolSimpan();
+
 });
 
-
+Then('user can see pop up message {string}', async ({ page }) => {
+    const pasienKkPage = new PasienKkPage(page);
+    await pasienKkPage.verifikasiPopUpSuccessMessage();
+});
