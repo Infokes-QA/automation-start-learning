@@ -19,10 +19,20 @@ Feature: Pelayanan
             | nik              | nama              |
             | 1295012906892673 | TEST ENCRYPT FAIL |
             
-    @create-pasien-asuransi-umum
+    @create-pasien-umum
     Scenario: User successfuylly create pasien asuransi umum
         Given user in pendaftaran pasien & kk page
         When user navigates to create pasien page
         Then user will be directed to create pasien page
-        When user fill create pasien form with valid data
 
+    @create-pasien-asuransi-umum
+    Scenario Outline: Create pasien from data file
+        Given user is in create pasien page
+        When user fill create pasien form using data index <index>
+        And user click submit button
+        Then user can see nik from index <index> in table
+
+        Examples:
+        | index |
+        | 0     |
+        | 1     |
