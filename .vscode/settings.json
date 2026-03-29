@@ -1,0 +1,6 @@
+{
+    "cucumberautocomplete.steps": [
+        "steps/*.ts"
+    ],
+    "cucumberautocomplete.strictGherkinCompletion": true
+}
