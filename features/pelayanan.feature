@@ -17,7 +17,7 @@ Feature: Pelayanan
 
         Examples:
             | nik              | nama              |
-            | 1295012906892673 | TEST ENCRYPT FAIL |
+            | 3201213121231212 | AKU YANG BARU |
             
     @create-pasien-asuransi-umum
     Scenario: User successfuylly create pasien asuransi umum
