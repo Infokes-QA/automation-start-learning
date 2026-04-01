@@ -12,7 +12,7 @@ Feature: Buat Pasien
     Scenario Outline: User register new patient with asuransi umum laki-laki & perempuan
         Given user in pendaftaran pasien & kk page
         When user create new patient asuransi umum "<jenisPasien>"
-        Then user can see registered "<jenisPasien>" pasien data in table
+        Then user can see registered "<jenisPasien>" pasien data
 
         Examples:
             | jenisPasien |

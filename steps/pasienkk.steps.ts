@@ -50,7 +50,7 @@ When('user create new patient asuransi umum {string}', async ({ page }, profile)
     await pasienKkPage.simpanPasienBaru();
 });
 
-Then('user can see registered {string} pasien data in table', async ({ page }, profile) => {
+Then('user can see registered {string} pasien data', async ({ page }, profile) => {
     const pasienKkPage = new PasienKkPage(page);
     resolvePatientProfile(profile);
     const patientData = getGeneratedPatientData(page);
