@@ -8,7 +8,7 @@ Feature: Pelayanan
         When user selects puskesmas
         Then user will be directed to the home page
 
-    @pendaftaranPasien
+    @search-pasien-asuransi-umum
     Scenario: User successfully search patient asuransi umum with NIK
         Given user in pendaftaran pasien & kk page
         When user search patient asuransi umum with "<nik>"
@@ -18,3 +18,21 @@ Feature: Pelayanan
         Examples:
             | nik              | nama              |
             | 1295012906892673 | TEST ENCRYPT FAIL |
+
+    @create-pasien-asuransi-umum-laki-laki
+    Scenario: user successfully create pasien asuransi umum
+        Given user in pendaftaran pasien & kk page
+        When user navigates to create pasien page
+        Then user will be directed to create pasien page
+        When user fill create pasien form with valid data
+        And user save create pasien form
+        Then sistem will show a pop-up success
+
+    @create-pasien-asuransi-umum-perempuan
+    Scenario: user successfully create pasien asuransi umum perempuan
+        Given user in pendaftaran pasien & kk page
+        When user navigates to create pasien page
+        Then user will be directed to create pasien page
+        When user fill create pasien form with valid data perempuan
+        And user save create pasien form
+        Then sistem will show a pop-up success

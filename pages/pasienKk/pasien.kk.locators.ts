@@ -16,5 +16,14 @@ export const pasienKkLocators = (page: Page) => ({
     findSpecificTableRowUsingString: async (key: string) =>
         await page.getByRole("table").getByRole("row").filter({ hasText: key }),
 
-    
+    //button create pasien
+    buttonCreatePasien: page.locator("#button_create"),
+
+    //form create pasien
+    noKKField: page.getByPlaceholder("Nomor KK / NIK Anggota Keluarga"),
+    nikField: page.getByPlaceholder("Nomor Induk Kependudukan"),
+    namaField: page.getByPlaceholder("Nama Lengkap"),
+    jenisKelaminLaki: page.getByRole('radio', { name: 'Laki-laki' }),
+    jenisKelaminPerempuan: page.getByRole('radio', { name: 'Perempuan' }),
+    buttonSaveForm: page.locator("#button_save"),
 });

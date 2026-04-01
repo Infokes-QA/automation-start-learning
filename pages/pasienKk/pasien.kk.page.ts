@@ -31,5 +31,22 @@ export class PasienKkPage extends BasePage {
         await this.waitVisible(row);
     }
 
-    
+    async navigatesToCreatePasienPage() {
+        await this.click(this.element.buttonCreatePasien);
+    }
+
+    async fillFormPasien(data: PasienData) : Promise<void> {
+        await this.fill(this.element.noKKField, data.noKK);
+        await this.fill(this.element.nikField, data.nik);
+        await this.fill(this.element.namaField, data.nama);
+        if (data.jenisKelamin === 'laki') {
+            await this.element.jenisKelaminLaki.check();
+        } else {
+            await this.element.jenisKelaminPerempuan.check();
+        } 
+    }
+
+    async saveNewPasien() {
+        await this.click(this.element.buttonSaveForm);
+    }
 }
