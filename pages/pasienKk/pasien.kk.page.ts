@@ -63,5 +63,13 @@ export class PasienKkPage extends BasePage {
 
     async verifikasiNIKDiTabel(data: PasienDatas) {
         await this.expectVisible(this.page.getByText(data.nik));
+        await this.expectVisible(this.page.getByText(data.nama));
+        if (data.jenisKelamin === 'L') {
+            await this.expectVisible(this.page.getByText('Laki-laki'));
+        } else if (data.jenisKelamin === 'P') {
+            await this.expectVisible(this.page.getByText('Perempuan'));
+        } else {
+            console.warn(`Jenis kelamin for patient ${data.nama} is not specified or invalid. Skipping gender verification in table.`);
+        }
     }
 }

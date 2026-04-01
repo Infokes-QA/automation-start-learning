@@ -1,5 +1,6 @@
 import type { PasienData } from './interfaces/pasien.interface';
 import type { PasienDatas } from './interfaces/pasien.interface';
+import { faker } from '@faker-js/faker';
 
 export const PASIEN_DEFAULT: PasienData = {
         noKK: '1235324562363676',
@@ -10,6 +11,16 @@ export const PASIEN_DEFAULT: PasienData = {
 };
 
 export const patients: PasienDatas[] = [
-    { nik: "1234567890123457", nama: "Siti Aminah", jenisKelamin: 'P' },
-    { nik: "9876543210987654", nama: "Budi Santoso", jenisKelamin: 'L' }
+    { 
+        // In v7, numeric is under random
+        nik: faker.random.numeric(16), 
+        // In v7, names are under name, not person
+        nama: faker.name.fullName(), 
+        jenisKelamin: 'L' 
+    },
+    { 
+        nik: faker.random.numeric(16), 
+        nama: faker.name.fullName(), 
+        jenisKelamin: 'P'
+    }
 ];
