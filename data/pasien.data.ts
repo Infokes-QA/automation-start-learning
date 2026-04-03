@@ -10,6 +10,6 @@ export const PASIEN_DEFAULT: PasienData = {
 };
 
 export const patients: PasienDatas[] = [
-    { nik: "1111222233334444", nama: "Wati Siti", jenisKelamin: 'P' },
-    { nik: "5555666677778888", nama: "Jono Joni", jenisKelamin: 'L' }
+    { nik: "1111222233334444", nama: "Wati Siti", noKK : "1111222233334445", jenisKelamin: 'P',tanggalLahir: "30-11-1989" },
+    { nik: "5555666677778888", nama: "Jono Joni", noKK : "5555666677778889", jenisKelamin: 'L',tanggalLahir: "30-11-1984" }
 ];

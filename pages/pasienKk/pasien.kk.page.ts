@@ -43,6 +43,8 @@ export class PasienKkPage extends BasePage {
     async fillFormPasien(data: PasienDatas) {
         await this.element.nikField.fill(data.nik);
         await this.element.nameField.fill(data.nama);
+        await this.element.KkField.fill(data.noKK);
+        await this.element.tglLahir.fill(data.tanggalLahir);
         if(data.jenisKelamin === 'L') {
             await this.click(this.element.maleRadioButton);
             //console.log("Kamu lakik");
@@ -54,7 +56,7 @@ export class PasienKkPage extends BasePage {
         }
 
         // Optional: Add a small log or console.info for easier debugging in CI
-        console.log(`Filling form for patient: ${data.nama} (NIK: ${data.nik}) (Jenis Kelamin: ${data.jenisKelamin})`);
+        console.log(`Filling form for patient: ${data.nama} (NIK: ${data.nik}) (Jenis Kelamin: ${data.jenisKelamin}) (NoKK: ${data.noKK})`);
     }
 
     async submitFormPasien() {

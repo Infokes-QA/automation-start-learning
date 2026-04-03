@@ -9,7 +9,7 @@ export interface PasienData {
 export interface PasienDatas {
     nik: string;
     nama: string;
-    noKK?: string;
+    noKK: string;
     jenisKelamin: 'L' | 'P'; // Strict type
-    tanggalLahir?: string;
+    tanggalLahir: string;
 }

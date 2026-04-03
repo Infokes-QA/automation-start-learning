@@ -21,11 +21,13 @@ export const pasienKkLocators = (page: Page) => ({
 
     //form create pasien
     nikField: page.getByPlaceholder("Nomor Induk Kependudukan"),
+    KkField: page.getByPlaceholder("🔍 Nomor KK / NIK Anggota Keluarga"),
     nameField: page.getByPlaceholder("NAMA LENGKAP"),   
     //genderField: page.getByRole("combobox", { name: "Jenis Kelamin" }),
     birthDateField: page.locator('#tanggal_lahir'),
     maleRadioButton: page.getByText("Laki-laki"),
     femaleRadioButton: page.getByText("Perempuan"),
+    tglLahir: page.locator("input[name='MPasien[tanggal_lahir]']"),
 
     //form create pasien submit button
     submitButton: page.locator("#button_save")
