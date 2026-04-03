@@ -61,6 +61,10 @@ export class PasienKkPage extends BasePage {
         await this.click(this.element.submitButton);
     }
 
+    async verifikasiNIK(data: PasienDatas) {
+        await this.expectVisible(this.page.getByText(String(data)));
+    }
+    
     async verifikasiNIKDiTabel(data: PasienDatas) {
         await this.expectVisible(this.page.getByText(String(data.nik)));
     }

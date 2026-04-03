@@ -23,7 +23,7 @@ Then('user can see {string} pasien nama in table', async ({ page }, namaPasien) 
 
 Then('user can see {string} pasien nik in table', async ({ page }, nikPasien) => {
     const pasienKkPage = new PasienKkPage(page);
-    await pasienKkPage.verifikasiNIKDiTabel(nikPasien);
+    await pasienKkPage.verifikasiNIK(nikPasien);
 });
 
 When('user navigates to create pasien page', async ({ page }) => {
