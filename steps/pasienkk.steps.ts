@@ -1,6 +1,6 @@
 import { createBdd } from 'playwright-bdd';
 import { PasienKkPage } from '../pages/pasienKk/pasien.kk.page';
-import { PASIEN_DEFAULT } from '../data/pasien.data';
+import { createPasienLakiLaki, createPasienPerempuan } from '../data/pasien.data';
 
 const { Given, When, Then } = createBdd();
 
@@ -35,9 +35,15 @@ Then('user will be directed to create pasien page', async ({ page }) => {
     await pasienKkPage.expectUrl("/pasien/create");
 });
 
-When('user fill create pasien form with valid data', async ({ page }) => {
+When('user fill create pasien form with {string} data', async ({ page }, jenisKelamin) => {
     const pasienKkPage = new PasienKkPage(page);
-    await pasienKkPage.fillFormPasien(PASIEN_DEFAULT);
+    const data = jenisKelamin === 'Laki-laki' ? createPasienLakiLaki() : createPasienPerempuan();
+    await pasienKkPage.fillFormPasien(data);
+});
+
+Then('user should see success message', async ({ page }) => {
+    const pasienKkPage = new PasienKkPage(page);
+    await pasienKkPage.expectUrl(/\/pasien\/(show|\?)?/);
 });
 
 

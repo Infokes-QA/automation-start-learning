@@ -1,7 +1,23 @@
 import type { PasienData } from './interfaces/pasien.interface';
 
-export const PASIEN_DEFAULT: PasienData = {
-        noKK: '1235324562363676',
-        nik: '3278496512389074',
-        nama: 'Auto Mation',
+const generateUniqueId = () => {
+    const randomNum = Math.floor(Math.random() * 10**15);
+    return '1' + randomNum.toString().padStart(15, '0');
 };
+
+export const createPasienLakiLaki = (): PasienData => ({
+    noKK: generateUniqueId(),
+    nik: generateUniqueId(),
+    nama: 'Herman Jumapo ' + generateUniqueId(),
+    jenisKelamin: 'Laki-laki',
+});
+
+export const createPasienPerempuan = (): PasienData => ({
+    noKK: generateUniqueId(),
+    nik: generateUniqueId(),
+    nama: 'SINTA MARIHUANI ' + generateUniqueId(),
+    jenisKelamin: 'Perempuan',
+});
+
+export const PASIEN_DEFAULT = createPasienLakiLaki();
+

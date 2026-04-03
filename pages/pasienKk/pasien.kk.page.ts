@@ -38,5 +38,13 @@ export class PasienKkPage extends BasePage {
 
     async fillFormPasien(data: PasienData) : Promise<void> {
         await this.fill(this.element.nikField, data.nik);
+        await this.fill(this.element.noKKField, data.noKK);
+        await this.fill(this.element.namaField, data.nama);
+        if (data.jenisKelamin === 'Laki-laki') {
+            await this.click(this.element.jenisKelaminLaki);
+        } else {
+            await this.click(this.element.jenisKelaminPerempuan);
+        }
+        await this.click(this.element.submitButton);
     }
 }

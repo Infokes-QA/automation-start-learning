@@ -20,5 +20,10 @@ export const pasienKkLocators = (page: Page) => ({
     buttonCreatePasien: page.locator("#button_create"),
 
     //form create pasien
-    nikField: page.getByPlaceholder("Nomor Induk Kependudukan"),
+    nikField: page.locator('input[name="MPasien[nik]"]'),
+    noKKField: page.locator('input[name="MPasien[no_kk]"]'),
+    namaField: page.locator('input[name="MPasien[nama]"]').or(page.locator('input[name="nama"]')),
+    jenisKelaminLaki: page.locator('input[name="MPasien[jenis_kelamin]"][value="L"]').or(page.locator('input[name="jenis_kelamin"][value="L"]')).or(page.locator('input[name="MPasien[jenis_kelamin]"][value="1"]')),
+    jenisKelaminPerempuan: page.locator('input[name="MPasien[jenis_kelamin]"][value="P"]').or(page.locator('input[name="jenis_kelamin"][value="P"]')).or(page.locator('input[name="MPasien[jenis_kelamin]"][value="2"]')),
+    submitButton: page.locator('#button_save'),
 });
