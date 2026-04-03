@@ -56,7 +56,7 @@ export class PasienKkPage extends BasePage {
         }
 
         // Optional: Add a small log or console.info for easier debugging in CI
-        console.log(`Filling form for patient: ${data.nama} (NIK: ${data.nik}) (Jenis Kelamin: ${data.jenisKelamin}) (NoKK: ${data.noKK})`);
+        console.log(`Filling form for patient: ${data.nama} (NIK: ${data.nik}) (Jenis Kelamin: ${data.jenisKelamin}) (NoKK: ${data.noKK})  (tanggalLahir: ${data.tanggalLahir})`);
     }
 
     async submitFormPasien() {
