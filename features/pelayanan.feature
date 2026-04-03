@@ -8,16 +8,15 @@ Feature: Pelayanan
         When user selects puskesmas
         Then user will be directed to the home page
 
-    @search-pasien-asuransi-umum
+    @search-pasien
     Scenario: User successfully search patient asuransi umum with NIK
         Given user in pendaftaran pasien & kk page
         When user search patient asuransi umum with "<nik>"
         Then user can see "<nama>" pasien nama in table
         And user can see "<nik>" pasien nik in table
-
         Examples:
             | nik              | nama              |
-            | 0099887766554433 | AKU YANG BARU |
+            | 0099887766554433 | CITRA TES 3 |
             
     @create-pasien-umum
     Scenario: User successfuylly create pasien asuransi umum

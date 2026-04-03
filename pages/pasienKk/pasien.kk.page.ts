@@ -62,6 +62,6 @@ export class PasienKkPage extends BasePage {
     }
 
     async verifikasiNIKDiTabel(data: PasienDatas) {
-        await this.expectVisible(this.page.getByText(data.nik));
+        await this.expectVisible(this.page.getByText(String(data.nik)));
     }
 }

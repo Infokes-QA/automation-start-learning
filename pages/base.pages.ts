@@ -212,47 +212,47 @@ export class BasePage {
 	// Assertion helpers
 
 	async expectVisible(target: Locator, timeoutMs?: number): Promise<void> {
-		await expect(target).toBeVisible({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toBeVisible({ timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000 });
 	}
 
 	async expectHidden(target: Locator, timeoutMs?: number): Promise<void> {
-		await expect(target).toBeHidden({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toBeHidden({ timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000 });
 	}
 
 	async expectEnabled(target: Locator, timeoutMs?: number): Promise<void> {
-		await expect(target).toBeEnabled({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toBeEnabled({ timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000 });
 	}
 
 	async expectDisabled(target: Locator, timeoutMs?: number): Promise<void> {
-		await expect(target).toBeDisabled({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toBeDisabled({ timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	async expectChecked(target: Locator, timeoutMs?: number): Promise<void> {
-		await expect(target).toBeChecked({ timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toBeChecked({ timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	async expectText(target: Locator, expected: string | RegExp, timeoutMs?: number): Promise<void> {
-		await expect(target).toHaveText(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toHaveText(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	async expectContainsText(target: Locator, expected: string | RegExp, timeoutMs?: number): Promise<void> {
-		await expect(target).toContainText(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toContainText(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	async expectValue(target: Locator, expected: string | RegExp, timeoutMs?: number): Promise<void> {
-		await expect(target).toHaveValue(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toHaveValue(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	async expectCount(target: Locator, expected: number, timeoutMs?: number): Promise<void> {
-		await expect(target).toHaveCount(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(target).toHaveCount(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	async expectUrl(expected: string | RegExp, timeoutMs?: number): Promise<void> {
-		await expect(this.page).toHaveURL(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(this.page).toHaveURL(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	async expectTitle(expected: string | RegExp, timeoutMs?: number): Promise<void> {
-		await expect(this.page).toHaveTitle(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs });
+		await expect(this.page).toHaveTitle(expected, { timeout: timeoutMs ?? this.defaultTimeoutMs ?? 5000});
 	}
 
 	// ---- Action helpers (with retry)
