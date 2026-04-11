@@ -25,20 +25,15 @@ export interface RegisteredPatientContext {
   nikPasien: string;
   namaPasien: string;
   phoneNumber: string;
-  source: "ui";
 }
 
-// Context for storing test data between steps
 export interface TestContext {
   nik?: string;
   patientDataGlobal?: PasienData;
+  expectedGender?: string;
   registeredPatient?: RegisteredPatientContext;
 }
 
-/**
- * Creates page objects for a given Playwright Page instance.
- * This function can be reused by both Playwright fixtures and Cucumber world.
- */
 export function createPages(page: Page): Pages {
   return {
     loginPage: new LoginPage(page),
@@ -48,7 +43,6 @@ export function createPages(page: Page): Pages {
   };
 }
 
-// Extend playwright-bdd test with custom fixtures
 export const test = bddTest.extend<{
   page: Page;
   pages: Pages;
@@ -56,7 +50,7 @@ export const test = bddTest.extend<{
   testContext: TestContext;
 }>({
   page: async ({ browser }, use, testInfo) => {
-    const storageStatePath = path.join(__dirname, "../../playwright/.auth/testuser1.json");
+    const storageStatePath = path.join(__dirname, "../../playwright/.auth/user.json");
 
     // Check if this is a login scenario - don't use storage state for login tests
     const isLoginScenario = testInfo.titlePath.some(

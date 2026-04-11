@@ -1,34 +1,38 @@
 import { createBdd } from "playwright-bdd";
+import { expect } from "@playwright/test";
 import { getPageContext } from "./step.shared";
 import { PendaftaranHelper } from "../helpers/pendaftaran.helper";
 import { test } from "../fixtures/pages.fixture";
 import { PasienHelper } from "../helpers/pasien.helper";
+import { normalizeGenderText, clean } from "../helpers/pendaftaran/PendaftaranHelperSupport";
 
 const { Given, When, Then } = createBdd(test);
 
-/** Opens the Pendaftaran Pasien submenu from the Pendaftaran navigation. */
-Given("the User is on the Create Pasien page", async ({ page, pages }) => {
+Given("the user is on the create patient page", async ({ page, pages }) => {
   const pageContext = getPageContext(page, pages);
-  await PendaftaranHelper.navigateToCreatePatientPage(pageContext);
+  await PendaftaranHelper.goToCreatePatientPage(pageContext);
 });
 
-/** Fills the mandatory patient form, then stores the resulting patient context. */
-When("the User fills in patient profile with random data for {string}", async ({ page, pages, testContext }, gender: string) => {
-    const pageContext = getPageContext(page, pages);
-    await PendaftaranHelper.fillBuatBaruPasienForm(pageContext, testContext, gender);
-  },
-);
+When("the user fills in patient form with random data for {string}", async ({ page, pages, testContext }, gender: string) => {
+  const pageContext = getPageContext(page, pages);
+  await PendaftaranHelper.fillCreatePasienForm(pageContext, testContext, gender);
+});
 
-/** submits the patient form, then stores the resulting patient context. */
-When("the User saves the patient data", async ({ page, pages }) => {
+When("the user saves the patient data", async ({ page, pages }) => {
   const pageContext = getPageContext(page, pages);
   await PendaftaranHelper.submitPatientForm(pageContext);
 });
 
-/** Searches the current patient list using the canonical NIK stored in test context. */
-Then("user should see the patient listed in the patient index", async ({ page, pages, testContext }, nik: string) => {
-    const pageContext = getPageContext(page, pages);
-    await PasienHelper.navigateToIndexPasienPage(pageContext);
-    await PasienHelper.searchPasienByNik(pageContext, testContext, nik);
+Then("the user should verify that the patient's data are displayed correctly in the index", async ({ page, pages, testContext }, nik: string) => {
+  const pageContext = getPageContext(page, pages);
+  await PasienHelper.goToIndexPasienPage(pageContext);
+  const { nik: expectedNik, actualNik, actualName, gender } = await PasienHelper.searchPasienUsingNik(pageContext, testContext, nik);
+  const expectedName = testContext.patientDataGlobal?.namaPasien;
+  const expectedGender = testContext.expectedGender;
+  if (!expectedName || !expectedGender) {
+    throw new Error("Expected patient name or gender is missing in test context.");
   }
-);
+  expect(clean(actualNik)).toBe(clean(expectedNik));
+  expect(clean(actualName)).toBe(clean(expectedName));
+  expect(normalizeGenderText(gender)).toBe(normalizeGenderText(expectedGender));
+});

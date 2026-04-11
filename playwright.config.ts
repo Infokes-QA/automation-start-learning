@@ -1,9 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 import { defineBddConfig } from "playwright-bdd";
-import { getRemoteBrowserUrl } from "./config/browser.setup";
 import { env } from "./config/env.config";
 
-// playwright "testDir" harus berupa direktori, bukan glob wildcard
 const playwrightTestDir = "./tests";
 const bddGeneratedDir = `${playwrightTestDir}/generated`;
 
@@ -14,7 +12,6 @@ const bddConfig = defineBddConfig({
 });
 
 const defaultReporter = [
-  ["html"],
   ["line"],
   [
     "allure-playwright",
@@ -27,7 +24,6 @@ const defaultReporter = [
 ];
 
 const reportPortalReporter = [
-  ["html"],
   ["line"],
   [
     "@reportportal/agent-js-playwright",
@@ -52,13 +48,15 @@ const reportPortalReporter = [
 ];
 
 // Get remote browser URL once to avoid duplicate calls
-const remoteBrowserUrl = getRemoteBrowserUrl();
+const useReportPortal = process.env.USE_REPORT_PORTAL === "1";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
   ...(bddConfig as any),
+  reporter: useReportPortal ? reportPortalReporter : defaultReporter,
+  globalSetup: "./tests/setup/global.setup.ts",
   // Set root testDir to generated directory to satisfy playwright-bdd
   // Individual projects will override this to access both BDD and non-BDD tests
   testDir: bddGeneratedDir,
@@ -70,34 +68,18 @@ export default defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     launchOptions: {
-      headless: env.HEADLESS,
+      headless: false,
     },
   },
 
   projects: [
     {
-      name: "setup",
-      testDir: "./tests/setup",
-      testMatch: /.*\.setup\.ts$/,
-    },
-    {
       name: "bdd",
       testDir: bddGeneratedDir,
       testMatch: /.*\.spec\.js$/,
       use: {
-        ...devices["Desktop Chrome"],
-        ...(remoteBrowserUrl
-          ? {
-              connectOverCDP: remoteBrowserUrl,
-            }
-          : {
-              headless: process.env.HEADLESS !== "false",
-              launchOptions: {
-                devtools: false,
-              },
-            }),
+        ...devices["Desktop Chrome"]
       },
-      dependencies: ["setup"],
     },
     {
       name: "chromium",
@@ -105,19 +87,8 @@ export default defineConfig({
       testMatch: /.*\.spec\.ts$/,
       testIgnore: [/.*generated.*/],
       use: {
-        ...devices["Desktop Chrome"],
-        ...(remoteBrowserUrl
-          ? {
-              connectOverCDP: remoteBrowserUrl,
-            }
-          : {
-              headless: process.env.HEADLESS !== "false",
-              launchOptions: {
-                devtools: false,
-              },
-            }),
+        ...devices["Desktop Chrome"]
       },
-      dependencies: ["setup"],
     },
   ],
 

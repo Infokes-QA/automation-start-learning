@@ -1,8 +1,19 @@
 import { PageContext, TestContext, RegisteredPatientContext } from "../../fixtures/pages.fixture";
 import { generatePasienDataUmum } from "../../fixtures/patientData.fixture";
 
-export function normalizeUiText(value: string | null | undefined): string {
+export function clean(value: string | null | undefined): string {
   return (value ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+}
+
+export function normalizeGenderText(value: string | null | undefined): string {
+  const normalized = clean(value).replace(/_/g, "-");
+  if (normalized === "laki laki" || normalized === "laki-laki" || normalized === "laki") {
+    return "laki-laki";
+  }
+  if (normalized === "perempuan") {
+    return "perempuan";
+  }
+  return normalized;
 }
 
 export function parsePasienIdFromCurrentUrl(pageContext: PageContext): string | undefined {
@@ -25,14 +36,13 @@ export function getRegisteredPatientContext(testContext: TestContext): Registere
   const fallback: RegisteredPatientContext = {
     nikPasien,
     namaPasien,
-    phoneNumber,
-    source: "ui",
+    phoneNumber
   };
   testContext.registeredPatient = fallback;
   return fallback;
 }
 
-export function createGeneratedUiPatientContext(testContext: TestContext): {
+export function createGeneratedPatientContext(testContext: TestContext): {
   nikPasien: string;
   namaPasien: string;
   tanggalLahir: string;

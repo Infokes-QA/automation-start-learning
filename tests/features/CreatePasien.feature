@@ -1,14 +1,14 @@
 Feature: Create Data Pasien
 
     Background:
-        Given the User is logged in
-        And the User is on the Create Pasien page
+        Given the user is logged in to eClinic
+        And the user is on the create patient page
 
     @task
     Scenario Outline: create a new patient based on gender
-        When the User fills in patient profile with random data for '<gender>'
-        And the User saves the patient data
-        Then user should see the patient listed in the patient index
+        When the user fills in patient form with random data for '<gender>'
+        And the user saves the patient data
+        Then the user should verify that the patient's data are displayed correctly in the index
 
         Examples:
             | gender     |

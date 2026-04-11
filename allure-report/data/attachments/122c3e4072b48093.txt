@@ -1,0 +1,1 @@
+[FIXTURE] Using storage state for authenticated session
